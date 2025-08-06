@@ -84,7 +84,7 @@ proc getLsaHandle(): HANDLE =
 
 proc getLogonSessionData(luid: LUID): ptr SECURITY_LOGON_SESSION_DATA = 
   var data: ptr SECURITY_LOGON_SESSION_DATA
-  let status = LsaGetLogonSessionData(addr luid, addr data)
+  let status = LsaGetLogonSessionData(unsafeAddr luid, addr data)
   if status != 0 or data == nil:
     return nil
   return data
